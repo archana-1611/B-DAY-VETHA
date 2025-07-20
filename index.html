@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Birthday Vetha ♥</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet"/>
+ <!-- ✅ REPLACE your existing <style> section with this updated one -->
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  html, body {
+    width: 100%;
+    height: 100%;
+    font-family: 'Pacifico', cursive;
+    overflow-x: hidden;
+    background: linear-gradient(to bottom right, #ffc0cb, #ff69b4, #ff1493);
+  }
+
+  .page {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 2rem;
+    text-align: center;
+    position: relative;
+  }
+
+  .page.active {
+    display: flex;
+  }
+
+  .page-content {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 1s ease forwards;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  .gift-emoji {
+    font-size: 5rem;
+    cursor: pointer;
+    animation: bounce 1.2s infinite;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  h1 {
+    font-size: 3rem;
+    color: #fff;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    font-size: 1.3rem;
+    color: #fff;
+    margin-top: 1rem;
+    max-width: 800px;
+  }
+
+  .buttons {
+    margin-top: 2rem;
+  }
+
+  button {
+    background: #fff;
+    color: #ff1493;
+    padding: 10px 20px;
+    border: none;
+    font-size: 1rem;
+    border-radius: 25px;
+    cursor: pointer;
+    margin: 0 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 1;
+  }
+
+  button:hover {
+    color: #fff;
+    background: #ff1493;
+    box-shadow: 0 0 15px #ff69b4, 0 0 25px #ff69b4;
+    transform: scale(1.05);
+  }
+
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    width: 100%;
+    margin-top: 2rem;
+  }
+
+  .card {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    transform-style: preserve-3d;
+    transition: transform 0.8s;
+    cursor: pointer;
+  }
+
+  .card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  }
+
+  .card.flipped {
+    transform: rotateY(180deg);
+  }
+
+  .card-inner {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: transform 0.6s ease-in-out;
+  }
+
+  .card-front img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .card-back {
+    background: #ffe6f2;
+    color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    transform: rotateY(180deg);
+    padding: 1rem;
+  }
+
+  video {
+    width: 60%;
+    border-radius: 20px;
+    margin: 1rem 0;
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+  }
+
+  .hearts {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    top: 0;
+    left: 0;
+    z-index: 0;
+  }
+
+  .hearts span {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: red;
+    transform: rotate(45deg);
+    animation: float 6s linear infinite;
+  }
+
+  .hearts span::before,
+  .hearts span::after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: red;
+    border-radius: 50%;
+  }
+
+  .hearts span::before {
+    top: -10px;
+    left: 0;
+  }
+
+  .hearts span::after {
+    left: -10px;
+    top: 0;
+  }
+
+  @keyframes float {
+    0% {
+      transform: translateY(100vh) rotate(45deg);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-10vh) rotate(45deg);
+      opacity: 0;
+    }
+  }
+  .sparkle {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  background: radial-gradient(circle, #ffffff, #ff69b4, #ff1493);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: sparkle-fade 1.2s ease-out forwards;
+  z-index: 999;
+  opacity: 0.9;
+  mix-blend-mode: screen;
+}
+
+@keyframes sparkle-fade {
+  0% {
+    opacity: 1;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(3.5);
+  }
+}
+
+
+@keyframes sparkle-fade {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(2.5);
+  }
+}
+.touch-animation {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background: radial-gradient(circle, #ffffff, #ff69b4);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: pop-touch 0.8s ease-out forwards;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 15px #fff;
+}
+
+@keyframes pop-touch {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(4);
+  }
+}
+
+</style>
+</head>
+<body>
+
+<audio id="bgmusic" loop>
+  <source src="videoplayback-[AudioTrimmer.com].m4a" type="audio/mp3">
+</audio>
+
+<div class="hearts"></div>
+
+<!-- Page 1 -->
+<div class="page active" id="page1">
+  <div class="gift-emoji" onclick="openGift(this)">🎁</div>
+  <div class="page-content">
+    <h1>🎉 Happy Birthday Vetha 🎂</h1>
+    <p>You are one of the most beautiful souls to walk this earth. Here's a little surprise just for you!</p>
+    <div class="buttons">
+      <button onclick="nextPage()">Next</button>
+    </div>
+  </div>
+</div>
+
+<!-- Page 2 -->
+<div class="page" id="page2">
+  <div class="gift-emoji" onclick="openGift(this)">🎁</div>
+  <div class="page-content">
+    <p>Today isn’t just any ordinary day — it’s the day the world was gifted with someone truly extraordinary.<br><br>
+    You are cherished, admired, and loved. I hope this surprise brings you as much joy as your smile brings others.<br><br>
+    You deserve all the happiness in the world 💖</p>
+    <div class="buttons">
+      <button onclick="prevPage()">Previous</button>
+      <button onclick="nextPage()">Next</button>
+    </div>
+  </div>
+</div>
+
+<!-- Page 3 -->
+<div class="page" id="page3">
+  <div class="gift-emoji" onclick="openGift(this)">🎁</div>
+  <div class="page-content">
+    <h1>✨ Every memory with you is a precious treasure ✨</h1>
+    <div class="gallery">
+      <div class="card" onclick="flipCard(this)">
+        <div class="card-inner card-front"><img src="1.jpg" alt="Pic 1"></div>
+        <div class="card-inner card-back">You light up every room with your smile!</div>
+      </div>
+      <div class="card" onclick="flipCard(this)">
+        <div class="card-inner card-front"><img src="2.jpg" alt="Pic 2"></div>
+        <div class="card-inner card-back">Elegance and charm in every moment 💫</div>
+      </div>
+      <div class="card" onclick="flipCard(this)">
+        <div class="card-inner card-front"><img src="3.jpg" alt="Pic 3"></div>
+        <div class="card-inner card-back">Memories made with friends are forever 💕</div>
+      </div>
+      <div class="card" onclick="flipCard(this)">
+        <div class="card-inner card-front"><img src="4.jpg" alt="Pic 4"></div>
+        <div class="card-inner card-back">Adventure suits you perfectly 🌍✨</div>
+      </div>
+    </div>
+    <div class="buttons">
+      <button onclick="prevPage()">Previous</button>
+      <button onclick="nextPage()">Next</button>
+    </div>
+  </div>
+</div>
+<!-- Additional Page 4 Before Final Page -->
+<div class="page" id="page3b">
+  <div class="gift-emoji" onclick="openGift(this)">🎁</div>
+  <div class="page-content">
+    <h1>💖 A Moment to Remember 💖</h1>
+    <p style="font-size: 1.4rem; color: #fff; max-width: 800px; margin: 1rem auto;">
+      Like stars that light the night, you brighten everyone’s life with your glow. Let this memory remind you how deeply you are loved. Here's to every second spent together becoming a timeless treasure.
+    </p>
+   <video autoplay muted playsinline loop>
+  <source src="1.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+    <div class="buttons">
+      <button onclick="prevPage()">Previous</button>
+      <button onclick="nextPage()">Next</button>
+    </div>
+  </div>
+</div>
+<!-- Page 4 -->
+<div class="page" id="page4">
+  <div class="gift-emoji" onclick="openGift(this)">🎁</div>
+  <div class="page-content">
+    <h1>🎀 A beautiful journey full of joy 🎀</h1>
+    <p>Thank you for being the amazing person you are. May this year bring you endless joy, love, and laughter. Happy Birthday again, Vetha! 💖🎉</p>
+    <video autoplay muted playsinline loop>
+  <source src="5.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+    <div class="buttons">
+      <button onclick="prevPage()">Previous</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const pages = document.querySelectorAll('.page');
+  let currentPage = 0;
+
+  function nextPage() {
+    pages[currentPage].classList.remove('active');
+    currentPage++;
+    pages[currentPage].classList.add('active');
+  }
+
+  function prevPage() {
+    pages[currentPage].classList.remove('active');
+    currentPage--;
+    pages[currentPage].classList.add('active');
+  }
+
+  function flipCard(card) {
+    card.classList.toggle('flipped');
+  }
+
+  function openGift(emoji) {
+  // Show sparkles
+  for (let i = 0; i < 20; i++) {
+    const sparkle = document.createElement('div');
+    sparkle.className = 'sparkle';
+    sparkle.style.top = `${emoji.offsetTop + emoji.offsetHeight / 2 + Math.random() * 50 - 25}px`;
+    sparkle.style.left = `${emoji.offsetLeft + emoji.offsetWidth / 2 + Math.random() * 50 - 25}px`;
+    sparkle.style.position = 'absolute';
+    document.body.appendChild(sparkle);
+    setTimeout(() => sparkle.remove(), 1000);
+  }
+
+  // Show content
+  emoji.style.display = 'none';
+  const content = emoji.nextElementSibling;
+  content.style.display = 'flex';
+}
+
+  // Flying hearts
+  const heartsContainer = document.querySelector('.hearts');
+  setInterval(() => {
+    const heart = document.createElement('span');
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.animationDuration = (2 + Math.random() * 3) + 's';
+    heartsContainer.appendChild(heart);
+    setTimeout(() => heart.remove(), 5000);
+  }, 300);
+
+  // Play music once on user interaction
+  document.body.addEventListener('click', () => {
+    const music = document.getElementById('bgmusic');
+    music.play().catch(() => {});
+  }, { once: true });
+</script>
+<script>
+document.addEventListener('click', function(e) {
+  const touch = document.createElement('div');
+  touch.className = 'touch-animation';
+  touch.style.left = `${e.clientX}px`;
+  touch.style.top = `${e.clientY}px`;
+  document.body.appendChild(touch);
+
+  setTimeout(() => {
+    touch.remove();
+  }, 800);
+});
+</script>
+
+</body>
+</html>
